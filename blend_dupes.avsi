@@ -33,24 +33,25 @@ function BlendDupes(last, float "thresh", float "weight", bool "debug") {
 
 # ---------------------------------------------------
 # Reproducable test clip to demo and play with the algorithm
-function TestClip() {
-  function ConvertToFilm(last) {
-    SelectEvery(5, 0,1,2,2,3)
-  }
-
-  BlankClip(pixel_type="YV12", length=30*4, fps=30000, fps_denominator=1001, width=320, height=240)
-  ScriptClip("""subtitle(string(current_frame), size=200)""")
-
-  # interleave two simulated inverse telecined FILM and VIDEO segments
-  sceneLength = FrameCount / 4
-  scene1 = Trim(sceneLength*0, 1*sceneLength-1).subtitle("VIDEO")
-  scene2 = Trim(sceneLength*1, 2*sceneLength-1).ConvertToFilm().subtitle("FILM")
-  scene3 = Trim(sceneLength*2, 3*sceneLength-1).subtitle("VIDEO")
-  scene4 = Trim(sceneLength*3, 4*sceneLength-1).ConvertToFilm().subtitle("FILM")
-  return scene1 + scene2 + scene3 + scene4
-}
-
+#
+# function TestClip() {
+#   function ConvertToFilm(last) {
+#     SelectEvery(5, 0,1,2,2,3)
+#   }
+#
+#   BlankClip(pixel_type="YV12", length=30*4, fps=30000, fps_denominator=1001, width=320, height=240)
+#   ScriptClip("""subtitle(string(current_frame), size=200)""")
+#
+#   # interleave two simulated inverse telecined FILM and VIDEO segments
+#   sceneLength = FrameCount / 4
+#   scene1 = Trim(sceneLength*0, 1*sceneLength-1).subtitle("VIDEO")
+#   scene2 = Trim(sceneLength*1, 2*sceneLength-1).ConvertToFilm().subtitle("FILM")
+#   scene3 = Trim(sceneLength*2, 3*sceneLength-1).subtitle("VIDEO")
+#   scene4 = Trim(sceneLength*3, 4*sceneLength-1).ConvertToFilm().subtitle("FILM")
+#   return scene1 + scene2 + scene3 + scene4
+# }
+#
 # Usage
-TestClip()
-processed = BlendDupes(thresh=1, weight=0.5, debug=true)
-StackHorizontal(last.subtitle("Original", y=214), processed.subtitle("Processed", y=214))
+# TestClip()
+# processed = BlendDupes(thresh=1, weight=0.5, debug=true)
+# StackHorizontal(last.subtitle("Original", y=214), processed.subtitle("Processed", y=214))
