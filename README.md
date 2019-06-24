@@ -4,7 +4,7 @@ Some of my avisynth scripts created for addressing various video processing hurd
 
 ## BlendDupes
 
-Whenever a duplicate frame is encountered, replaces the frame with a blend of the previous and next frame. Duplicate is defined as the luma pixel difference, compared to the previous frame, being being below a user defined threshold.
+Whenever a duplicate frame is encountered, replaces the frame with a blend of the previous and next frame. Duplicate is defined as the luma pixel difference, compared to the previous frame, being below a user defined threshold.
 
 ![BlendDupes illustration][blenddupessample]
 
